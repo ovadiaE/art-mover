@@ -1,0 +1,9 @@
+body, html {
+    height:  99%;
+    margin:  0px auto;
+    padding: 0px auto;
+}
+
+#__next {
+    height: 99%;
+}
