@@ -5,10 +5,11 @@ import styles from './login-wrapper.module.scss'
  * This is a wrapper for the login/create account components
  * @returns a wrapper for which the css elements of 2 smaller components will be relative to
  */
+
 export default function Wrapper() {
     return (
         <div className={styles.wrapper}>
-            <Login/>
+            <Login renderState={true}/>
         </div>
     )
 }
