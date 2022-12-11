@@ -1,9 +1,9 @@
-import Login from "./login/login"
+import Wrapper from "./login-wrapper/login-wrapper"
 
 export default function Home() {
   return (
     <>
-     <Login/>
+     <Wrapper/>
     </>
   )
 }
