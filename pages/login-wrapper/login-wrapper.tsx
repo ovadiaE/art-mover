@@ -8,3 +8,7 @@ export default function Wrapper() {
         <div>Hello from login-wrapper</div>
     )
 }
+
+//The general idea is to do conditional rendering on a button 
+//If Sign up is clicked, display sign-up
+//else by default display login
