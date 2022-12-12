@@ -1,6 +1,7 @@
 import styles from "./login.module.scss";
 import { useState } from "react";
 import { Input, InputLabel, FormControl, Button } from '@mui/material';
+import axios from 'axios'
 
 interface componentProps {
     renderForm: boolean;
@@ -25,9 +26,10 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
     }
 
     const handleSignIn = () => {
-        console.log({user: user, password: password}); // this will be a post request
-        setUser('');
-        setPassword('');
+       axios.post('/http://localhost:3000/sing-in', {
+        user: user,
+        password: password
+       })
     }
 
     return (
