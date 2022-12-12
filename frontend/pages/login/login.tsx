@@ -26,7 +26,7 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
     }
 
     const handleSignIn = () => {
-       axios.post('/http://localhost:3000/sing-in', {
+       axios.post('http://localhost:3000/sign-in', {
         user: user,
         password: password
        })
