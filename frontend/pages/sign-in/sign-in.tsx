@@ -1,7 +1,7 @@
-import Login from "../login/login"
-import styles from './login-wrapper.module.scss'
-import { useState } from "react"
-import SignUp from "../signup/signup"; 
+import Login from '../../components/login/login';
+import SignUp from '../../components/signup/signup';
+import styles from './sign-in.module.scss';
+import { useState } from "react";
 
 /**
  * This is a wrapper for the login/sign up

@@ -1,4 +1,4 @@
-import Wrapper from "./login-wrapper/login-wrapper"
+import Wrapper from "./sign-in/sign-in"
 import Link from 'next/link'
 
 export default function Home() {

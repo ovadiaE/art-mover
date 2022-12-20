@@ -1,7 +1,7 @@
 import styles from "./login.module.scss";
 import { useState } from "react";
 import { Input, InputLabel, FormControl, Button } from '@mui/material';
-import axios from 'axios'
+import axios from 'axios';
 
 interface componentProps {
     renderForm: boolean;
