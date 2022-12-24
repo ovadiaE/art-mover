@@ -1,7 +1,8 @@
 import express, {Express, Request, Response, NextFunction} from 'express';
 import * as bodyParser from "body-parser";
 import * as dotenv from 'dotenv';
-import {dbConnect} from './models/database'
+import * as UserController from './controllers/userController'
+// import {dbConnect} from './models/database'
 
 const app: Express = express();
 
@@ -15,8 +16,9 @@ app.listen(port, () => {
    console.log(`server listening on port: ${port}`) 
 })
 
-dbConnect();
+// dbConnect();
 
+app.post('/api/register', UserController.registerProducer)
 app.post('/sign-in', async (req: Request, res: Response) => {
     console.log(await req.body);
     res.sendStatus(200)
