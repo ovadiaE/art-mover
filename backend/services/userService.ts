@@ -30,10 +30,9 @@ export const dummyFunc = () => {
 }
 
 export const registerProducer = async (email: string, password: string) => {
+    //validate structure of email using regex or something
+    //validate password length > 8
     const hashedPassword = await hashPassword(password)
     const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
-    console.log('result', result.rows)
-    //should salt and hash password
-    //stores email and password in postgres
     return result.rowCount === 1
 }
