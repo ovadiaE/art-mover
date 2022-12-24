@@ -1,11 +1,11 @@
 import Login from '../../components/login/login';
-import SignUp from '../../components/signup/signup';
+import Register from '../../components/register/Register';
 import styles from './sign-in.module.scss';
 import { useState } from "react";
 
 /**
  * This is a wrapper for the login/sign up
- * @returns a wrapper for 2 omponents in auth flow
+ * @returns a wrapper for 2 components in auth flow
  */
 
 export default function Wrapper() {
@@ -16,12 +16,8 @@ export default function Wrapper() {
             { renderForm ? 
                 <Login renderForm={renderForm} setRenderForm={setRenderForm}/> 
                 : 
-                <SignUp renderForm={renderForm} setRenderForm={setRenderForm}/>
+                <Register renderForm={renderForm} setRenderForm={setRenderForm}/>
             }
         </div>
     )
 }
-
-//The general idea is to do conditional rendering on a button 
-//If Sign up is clicked, display sign-up
-//else by default display login
