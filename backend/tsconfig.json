@@ -5,8 +5,10 @@
       "declaration": true,
       "outDir": "./lib",
       "esModuleInterop": true,
-      "strict": true
+      "strict": true,
+      "types": ["node", "jest"]
     },
+    "typeAcquisition": { "include": ["jest"] },
     "include": ["*"],
     "exclude": ["node_modules"]
   }
