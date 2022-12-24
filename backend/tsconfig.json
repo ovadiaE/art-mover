@@ -9,6 +9,6 @@
       "types": ["node", "jest"]
     },
     "typeAcquisition": { "include": ["jest"] },
-    "include": ["*"],
+    "include": ["*", "**/*"],
     "exclude": ["node_modules"]
   }
