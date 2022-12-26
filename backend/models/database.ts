@@ -14,4 +14,5 @@ const client = new Client({
 client.connect().then(() => {
     console.log('db connected')
 })
+
 export default client

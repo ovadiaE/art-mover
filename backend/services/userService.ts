@@ -1,10 +1,9 @@
 import db from '../models/database'
 import * as bcrypt from 'bcrypt';
 import {uuid} from 'uuidv4'
-const INSERT_NEW_PRODUCER = `
-INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;
 
-`
+const INSERT_NEW_PRODUCER = 
+  `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
 
 const saltRounds = 10; // number of salt rounds to use when hashing the password
 
@@ -30,7 +29,10 @@ export const dummyFunc = () => {
 }
 
 export const registerProducer = async (email: string, password: string) => {
-    const hashedPassword = await hashPassword(password)
-    const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
-    return result.rowCount === 1
+  
+  const hashedPassword = await hashPassword(password)
+   
+  const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
+  
+  return result.rowCount === 1
 }

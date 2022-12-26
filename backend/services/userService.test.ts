@@ -1,4 +1,3 @@
-//eslint disable @typescript-eslint/no-var-requires
 import { dummyFunc } from "./userService"
 
 //write a test for dummyFunc
