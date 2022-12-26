@@ -2,6 +2,7 @@ import express, {Express, Request, Response, NextFunction} from 'express';
 import * as bodyParser from "body-parser";
 import * as dotenv from 'dotenv';
 import * as UserController from './controllers/userController'
+import * as AuthService from './services/authService'
 import cors from 'cors'
 
 const app: Express = express();
@@ -21,3 +22,5 @@ app.listen(port, () => {
 })
 
 app.post('/api/register', UserController.registerProducer)
+app.post('/api/login', UserController.login)
+app.get('/api/user/info', AuthService.authenticate ,UserController.getProducerInfo)

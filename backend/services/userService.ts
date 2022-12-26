@@ -1,7 +1,6 @@
 import db from '../models/database'
 import * as bcrypt from 'bcrypt';
 import {uuid} from 'uuidv4'
-
 const INSERT_NEW_PRODUCER = 
   `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
 
@@ -29,7 +28,6 @@ export const dummyFunc = () => {
 }
 
 export const registerProducer = async (email: string, password: string) => {
-  
   const hashedPassword = await hashPassword(password)
    
   const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
