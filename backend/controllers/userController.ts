@@ -4,12 +4,7 @@ import * as UserService from '../services/userService'
 
 export const registerProducer = async (req: Request, res: Response) => {
     try {
-        if (!req.body.email || !req.body.password) {
-            res.status(400).send({
-                message: 'Email and password are required'
-            })
-            return
-        }
+
         const success = await UserService.registerProducer(req.body.email, req.body.password)
         
         if (!success) {

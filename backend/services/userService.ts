@@ -29,11 +29,10 @@ export const dummyFunc = () => {
 }
 
 export const registerProducer = async (email: string, password: string) => {
+  
+  const hashedPassword = await hashPassword(password)
    
-    const hashedPassword = await hashPassword(password)
-    console.log(hashedPassword);
-   
-    const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
+  const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
     
-    return result.rowCount === 1
+  return result.rowCount === 1
 }
