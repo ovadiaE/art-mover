@@ -33,6 +33,6 @@ export const registerProducer = async (email: string, password: string) => {
   const hashedPassword = await hashPassword(password)
    
   const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
-    
+  
   return result.rowCount === 1
 }
