@@ -17,7 +17,7 @@ export const registerProducer = async (req: Request, res: Response): Promise<voi
     catch (error) {
         console.log('registerProducer failed with error:', error)
         if (String(error).match(/email_unique/)) {
-            res.status(500).send({
+            res.status(200).send({
                 message: 'email already exists'
             })
             return
@@ -28,9 +28,25 @@ export const registerProducer = async (req: Request, res: Response): Promise<voi
 
 
 export const login = async (req: Request, res: Response): Promise<void> => {
+    
     try {
-        res.send({})
-    } catch (error) {
+        
+        const producer = await UserService.login(req.body.email, req.body.password)
+
+        if(producer){
+            
+            let token = UserService.generateToken(producer)
+            res.send({
+                token: token
+            })
+        }
+        else{
+            res.status(403).send({
+                message: `User does not exist`
+            })
+        }
+    } 
+    catch (error) {
         res.sendStatus(500)
     }
 }

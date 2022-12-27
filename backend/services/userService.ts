@@ -1,8 +1,15 @@
 import db from '../models/database'
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt'
 import {uuid} from 'uuidv4'
+import jwt from 'jsonwebtoken'
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+
 const INSERT_NEW_PRODUCER = 
   `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
+const FIND_USER = `SELECT * FROM producer WHERE email = $1`
 
 const saltRounds = 10; // number of salt rounds to use when hashing the password
 
@@ -23,14 +30,36 @@ export async function comparePassword(password: string, hashedPassword: string):
   return isMatch;
 }
 
-export const dummyFunc = () => {
-    return "hello world"
-}
-
 export const registerProducer = async (email: string, password: string) => {
+  
   const hashedPassword = await hashPassword(password)
    
   const result = await db.query(INSERT_NEW_PRODUCER, [uuid(), email, hashedPassword])
   
   return result.rowCount === 1
+}
+
+export const login = async (email: string, password: string) => {
+  
+  const producer = await db.query(FIND_USER, [email]);
+
+  //If producer exists in db, verify password and return producer
+  if (producer.rows.length === 1) {
+    
+    const compare = await comparePassword(password, producer.rows[0].password)
+    
+    return (compare ? producer : false)
+  
+  }
+  return false
+}
+
+//need to fix the type here
+export const generateToken = (producer: any) => {
+  
+  const userId = producer.rows[0].uuid
+  
+  const token = jwt.sign({user: userId}, process.env.SECRET_KEY as string)
+
+  return token
 }
