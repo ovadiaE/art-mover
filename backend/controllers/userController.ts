@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 
+
 import * as UserService from '../services/userService'
 
 export const registerProducer = async (req: Request, res: Response): Promise<void> => {
@@ -27,7 +28,7 @@ export const registerProducer = async (req: Request, res: Response): Promise<voi
 }
 
 
-export const login = async (req: Request, res: Response): Promise<void> => {
+export const login = async (req: Request, res: Response): Promise<any> => {
     
     try {
         
@@ -36,9 +37,9 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         if(producer){
             
             let token = UserService.generateToken(producer)
-            res.send({
-                token: token
-            })
+            return res.cookie("access_token",token, {
+                httpOnly:true,
+            }).status(200).json({message:"logged in succesfully"})
         }
         else{
             res.status(403).send({
