@@ -74,11 +74,11 @@ const Register = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
         if(validateEmail(email) && validatePassword(password) && validateMatchingPasswords(password, confirmPassword)) {
             
             let response = await handlePost(email, password)
+            
             if(response?.data.message === 'email already exists'){
                 setDuplicateEmail(true)
             }
 
-            //rest of register process
             setRenderForm(!renderForm)
         }
       

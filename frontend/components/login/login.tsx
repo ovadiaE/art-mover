@@ -2,6 +2,8 @@ import styles from "./login.module.scss";
 import { useState } from "react";
 import { Input, InputLabel, FormControl, Button } from '@mui/material';
 import axios from 'axios';
+import {useRouter} from 'next/router';
+
 
 interface componentProps {
     renderForm: boolean;
@@ -10,11 +12,13 @@ interface componentProps {
 
 const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
     
+    const router = useRouter();
+    
     let [user, setUser] = useState('')
     let [password, setPassword] = useState('')
 
     let [userError, setUserError] = useState(false)
-
+    
     const changeSignInForm = () => {
         setRenderForm(!renderForm)
     }
@@ -39,7 +43,7 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
             } 
            
             let response = await axios.post('http://localhost:3001/api/login', formData) 
-            console.log(response.data?.token)
+            router.replace('http://localhost:3000/producer/producer-panel')
         }
         
         catch(error: any){
@@ -52,7 +56,6 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
     return (
         <> 
             <form className={styles.login} onSubmit={handleSignIn}>
-                
                 <FormControl fullWidth={false}>
                     <InputLabel htmlFor="my-input">Email or Username</InputLabel>
                     <Input onChange={handleUser} required={true} id="my-input" aria-describedby="my-helper-text" />

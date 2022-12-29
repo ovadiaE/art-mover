@@ -1,5 +1,6 @@
 import express, {Express, Request, Response, NextFunction} from 'express';
 import * as bodyParser from "body-parser";
+import cookieParser from 'cookie-parser'
 import * as dotenv from 'dotenv';
 import * as UserController from './controllers/userController'
 import * as AuthService from './services/authService'
@@ -8,6 +9,7 @@ import cors from 'cors'
 const app: Express = express();
 
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 app.use(cors({
    origin: 'http://localhost:3000'

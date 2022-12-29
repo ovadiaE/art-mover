@@ -6,7 +6,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-
 const INSERT_NEW_PRODUCER = 
   `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
 const FIND_USER = `SELECT * FROM producer WHERE email = $1`
@@ -59,7 +58,7 @@ export const generateToken = (producer: any) => {
   
   const userId = producer.rows[0].uuid
   
-  const token = jwt.sign({user: userId}, process.env.SECRET_KEY as string)
+  const token = jwt.sign({user: userId}, process.env.SECRET_KEY as string, {expiresIn: '30m'});
 
   return token
 }
