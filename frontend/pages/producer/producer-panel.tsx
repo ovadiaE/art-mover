@@ -1,6 +1,10 @@
+import Header from '../../components/producer-header/Header';
+
 const producerPanel = () => {
     return (
-        <h1>This is the producer panel</h1>
+        <>
+            <Header/>
+        </>
     )
 }
 

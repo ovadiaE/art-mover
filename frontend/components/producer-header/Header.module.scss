@@ -1,0 +1,21 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+
+    .leftSide{
+        display: flex;
+        align-items: center;
+        width: 15%;
+        justify-content: space-around;
+    }
+
+    .searchBar{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

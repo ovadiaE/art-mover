@@ -43,6 +43,8 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
             } 
            
             let response = await axios.post('http://localhost:3001/api/login', formData) 
+            
+            //Todo make this a protected route
             router.replace('http://localhost:3000/producer/producer-panel')
         }
         
