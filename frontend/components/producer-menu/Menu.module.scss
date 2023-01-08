@@ -1,0 +1,13 @@
+.wrapper{
+    border: 1px solid red;
+    height: 80%;
+    margin-top: 1%;
+    width: 10%;
+    display: flex;
+    
+    .list{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}

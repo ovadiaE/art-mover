@@ -6,8 +6,8 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const INSERT_NEW_PRODUCER = 
-  `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
+const INSERT_NEW_PRODUCER = `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
+const INSERT_NEW_COLLECTION = `INSERT INTO collection (uuid, name, size, producer_id) VALUES ($1, $2, $3, $4) RETURNING *;`
 const FIND_USER = `SELECT * FROM producer WHERE email = $1`
 
 const saltRounds = 10; // number of salt rounds to use when hashing the password
@@ -58,7 +58,15 @@ export const generateToken = (producer: any) => {
   
   const userId = producer.rows[0].uuid
   
-  const token = jwt.sign({user: userId}, process.env.SECRET_KEY as string, {expiresIn: '30m'});
+  const token = jwt.sign({user: userId, admin: true}, process.env.SECRET_KEY as string, {expiresIn: '30m'});
 
   return token
+}
+
+export const createCollection = async (id:string, name:string) => {
+  
+  const insert = await db.query(INSERT_NEW_COLLECTION, [uuid(), name, 0, id])
+  
+  return insert.rowCount === 1
+
 }

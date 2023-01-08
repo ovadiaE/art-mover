@@ -21,3 +21,30 @@ export type Producer = {
     password: string
     created_at: string
 }
+
+export type Token = {
+    user: 'string',
+    admin: boolean,
+    iat: number,
+    exp: number
+}
+
+export type SQL_Error = {
+    length: number,
+    severity: string,
+    code: string,
+    detail: string,
+    hint: any,
+    position: any,
+    internalPosition: any,
+    internalQuery: any,
+    where: any,
+    schema: string,
+    table: string,
+    column: any,
+    dataType: any,
+    constraint: string,
+    file: string,
+    line: string,
+    routine: string  
+}

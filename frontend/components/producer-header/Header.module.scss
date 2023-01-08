@@ -4,6 +4,7 @@
     justify-content: space-around;
     margin: 0;
     padding: 0;
+    border: 1px solid blue;
 
     .leftSide{
         display: flex;
@@ -19,3 +20,26 @@
     }
 
 }
+
+@media only screen and (max-width: 360px) {
+    .wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .leftSide{
+            display: flex;
+            align-items: center;
+            width: 15%;
+            justify-content: space-around;
+            font-size: small;
+        }
+    
+        .searchBar{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    
+    }
+  }

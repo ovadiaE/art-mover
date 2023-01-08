@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 
-
 import * as UserService from '../services/userService'
 
 export const registerProducer = async (req: Request, res: Response): Promise<void> => {
@@ -37,7 +36,8 @@ export const login = async (req: Request, res: Response): Promise<any> => {
         if(producer){
             
             let token = UserService.generateToken(producer)
-            return res.cookie("access_token",token, {
+            
+            return res.cookie("token",token, {
                 httpOnly:true,
             }).status(200).json({message:"logged in succesfully"})
         }
@@ -58,5 +58,21 @@ export const getProducerInfo = async (req: Request, res: Response): Promise<void
         res.send({})
     } catch (error) {
         res.sendStatus(500)
+    }
+}
+
+export const createCollection = async (req: Request, res: Response): Promise<void> => {
+    try{
+        let result = await UserService.createCollection(req.body.userId, req.body.name)
+        
+        if(result){
+            res.status(201).send({message: "created collection"})
+        }
+    }
+    catch(error:any) {
+        if(error.code === '23505'){
+            res.status(300).send({message:'collection name already exists'});
+        }
+        
     }
 }

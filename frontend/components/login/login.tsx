@@ -34,24 +34,28 @@ const Login = ({renderForm, setRenderForm}:componentProps): JSX.Element => {
     const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
         
         e.preventDefault()
-
-        try{
+        try {
+            let response = await fetch('http://localhost:3001/api/login', {
+                method: 'POST',
+                credentials: 'include',
+                headers : { 'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: user,
+                    password: password
+                })
+            }); 
             
-            let formData = {
-                email: user,
-                password: password
-            } 
-           
-            let response = await axios.post('http://localhost:3001/api/login', formData) 
-            
-            //Todo make this a protected route
-            router.replace('http://localhost:3000/producer/producer-panel')
-        }
-        
-        catch(error: any){
-            if(error.response.status === 403){
-                setUserError(true)
+            if(response.ok) {
+                
+                //Todo make this a protected route
+                router.replace('http://localhost:3000/producer/producer-panel')
             }
+            else {
+                throw new Error('An error occurred');
+            }
+        }
+        catch(error){
+            console.log(error);
         }
     }
 
