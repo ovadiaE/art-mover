@@ -1,0 +1,14 @@
+.gridWrapper{
+    border: 3px solid blue;
+    height: 82%;
+    margin-top: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .gridItem{
+        border: 1px solid black;
+        width: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -30,7 +30,11 @@ export const authenticate = (req: Request, res: Response, next: NextFunction): a
     catch(error:any){
         
         if(error.toString() === 'TokenExpiredError: jwt expired'){
+            console.log('token timed out')
              res.status(300).send({auth:false, message:'Token Timed out'});
+        }
+        else {
+            console.log("ERROR", error)
         }
     }
 }

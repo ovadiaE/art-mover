@@ -3,12 +3,14 @@ import * as bcrypt from 'bcrypt'
 import {uuid} from 'uuidv4'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv';
+import * as types from '../models/types'
 
 dotenv.config();
 
 const INSERT_NEW_PRODUCER = `INSERT INTO producer (uuid, email, password) VALUES ($1, $2, $3) RETURNING *;`
 const INSERT_NEW_COLLECTION = `INSERT INTO collection (uuid, name, size, producer_id) VALUES ($1, $2, $3, $4) RETURNING *;`
 const FIND_USER = `SELECT * FROM producer WHERE email = $1`
+const FIND_COLLECTIONS_BY_ID = 'SELECT * FROM collection WHERE PRODUCER_ID = $1'
 
 const saltRounds = 10; // number of salt rounds to use when hashing the password
 
@@ -69,4 +71,11 @@ export const createCollection = async (id:string, name:string) => {
   
   return insert.rowCount === 1
 
+}
+
+export const getCollections = async (id:string): Promise <any>  => {
+  
+  const collections = await db.query(FIND_COLLECTIONS_BY_ID, [id]);
+
+  return collections.rows
 }

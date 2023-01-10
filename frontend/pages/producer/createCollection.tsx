@@ -1,8 +1,5 @@
 import styles from './createCollection.module.scss';
-import Collections from '../../components/create-collections/CollectionForm';
-import { useState } from "react";
-import { Input, InputLabel, FormControl, Button } from '@mui/material';
-import axios from 'axios';
+import Collections from '../../components/collections/CollectionForm';
 
 const create = () => {
     return (

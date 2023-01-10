@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-
+import * as types from '../models/types'
 import * as UserService from '../services/userService'
 
 export const registerProducer = async (req: Request, res: Response): Promise<void> => {
@@ -53,9 +53,16 @@ export const login = async (req: Request, res: Response): Promise<any> => {
 }
 
 //queries postgres for all relevant data about producer and producer's products
-export const getProducerInfo = async (req: Request, res: Response): Promise<void> => {
+export const getCollections = async (req: Request, res: Response): Promise<void> => {
     try {
-        res.send({})
+        const collections = await UserService.getCollections(req.body.userId) 
+        
+        const properties  = collections.map((row: types.Collection) => {
+            return {name: row.name, id:row.uuid}
+        })
+        
+        res.status(200).send(properties)
+    
     } catch (error) {
         res.sendStatus(500)
     }

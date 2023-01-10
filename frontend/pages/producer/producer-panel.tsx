@@ -1,8 +1,7 @@
 import styles from './producer-panel.module.scss';
-import Header from '../../components/producer-header/Header';
-import Menu from '../../components/producer-menu/Menu';
-import Collections from '../../components/create-collections/CollectionForm';
-
+import Header from '../../components/header/Header';
+import Menu from '../../components/sidebar/Menu';
+import Collections from '../../components/collections/Collections';
 const producerPanel = () => {
     return (
         <>
@@ -10,7 +9,7 @@ const producerPanel = () => {
                     <Header/>
                     <div className={styles.panelBody}>
                         <Menu/>
-                        <div>COLLECTIONS WILL BE HERE</div>
+                        <Collections/>
                     </div>
             </div>
         </>

@@ -28,4 +28,4 @@ app.listen(port, () => {
 app.post('/api/register', UserController.registerProducer)
 app.post('/api/login', UserController.login)
 app.post('/api/user/create', AuthService.authenticate, UserController.createCollection)
-// app.get('/api/user/info', AuthService.authenticate ,UserController.getProducerInfo)
+app.get('/api/user/collecions', AuthService.authenticate ,UserController.getCollections)

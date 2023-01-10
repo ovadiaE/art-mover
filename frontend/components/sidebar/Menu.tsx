@@ -14,14 +14,14 @@ const Menu = () => {
     const router = useRouter();
 
     return (
-          menuState ? <div className={styles.wrapper}>
+         <div className={styles.wrapper}>
            <ul className={styles.list}>
                 <li onClick={navigateToCreate}>Create Collection</li>
                 <li>Report</li>
                 <li>settings</li>
                 <li>Logout</li>
            </ul>
-        </div> : null
+        </div>
     )
 }
 

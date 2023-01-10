@@ -1,12 +1,9 @@
 .wrapper{
-    border: 1px solid blue;
     height: 100%;
-    border: 1px solid pink;
+    border: 2px solid red;
     .panelBody{
-        border: 3px solid black;
         display: flex;
         flex-direction: row;
         height: 100%;
-        justify-content: space-between;
     }
 }

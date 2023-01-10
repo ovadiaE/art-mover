@@ -1,8 +1,9 @@
 export type Collection = {
-    uuid: string
-    size: number
-    created_at: string
-    updated_at: string
+    uuid: string,
+    name: string,
+    size: number,
+    created_at: Date,
+    producer_id: string
 }
 
 export type Item = {
